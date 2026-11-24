@@ -6,107 +6,174 @@
 <title>Azfar Store — Produk Digital Praktis untuk Keluarga Indonesia</title>
 <meta name="description" content="Ebook, panduan, dan mini app praktis untuk mengatur rumah, keluarga, dan ibadah. Dibuat oleh Azfar Store.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0f0a24; --bg2:#1a1040; --card:rgba(255,255,255,.05); --line:rgba(255,255,255,.1);
-    --text:#f4f1ff; --muted:#b4abd6; --ungu:#a855f7; --pink:#e879f9; --biru:#818cf8; --hijau:#34d399;
+    --bg:#0a0a0f; --bg2:#12121a; --card:rgba(255,255,255,.035); --line:rgba(232,201,138,.16);
+    --text:#f6f0e4; --muted:#aaa395; --emas:#d4af37; --emas2:#f1d8a0; --emas3:#a8822a;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--text);line-height:1.6;
-    background:radial-gradient(1200px 600px at 80% -10%,#3b1d7a 0%,transparent 60%),
-               radial-gradient(900px 500px at -10% 40%,#2a1260 0%,transparent 60%),var(--bg);
-    min-height:100vh}
+  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--text);line-height:1.6;background:var(--bg);overflow-x:hidden}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px;position:relative}
+  .serif{font-family:'Playfair Display',Georgia,serif}
+  .emas{background:linear-gradient(100deg,var(--emas3),var(--emas2) 45%,var(--emas) 70%,var(--emas3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* Latar halus berbintik emas */
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(900px 500px at 85% 10%,rgba(212,175,55,.10),transparent 60%),
+      radial-gradient(700px 500px at 0% 60%,rgba(212,175,55,.06),transparent 60%),
+      radial-gradient(rgba(241,216,160,.07) 1px,transparent 1px) 0 0/28px 28px,
+      var(--bg)}
 
   /* Navigasi */
-  nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);background:rgba(15,10,36,.7);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{font-weight:800;font-size:20px;letter-spacing:-.5px}
-  .logo span{background:linear-gradient(90deg,var(--ungu),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .menu{display:flex;gap:24px;font-size:14px;color:var(--muted)}
-  .menu a:hover{color:var(--text)}
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,15,.72);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{font-family:'Playfair Display',serif;font-weight:800;font-size:23px;letter-spacing:.3px}
+  .menu{display:flex;gap:28px;font-size:14px;color:var(--muted)}
+  .menu a:hover{color:var(--emas2)}
   @media(max-width:640px){.menu{display:none}}
 
-  /* Hero */
-  .hero{padding:90px 0 70px;text-align:center}
-  .pill{display:inline-block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-    padding:6px 14px;border-radius:99px;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.4);color:#d8b4fe}
-  h1{font-size:clamp(34px,6vw,60px);line-height:1.1;font-weight:800;letter-spacing:-1.5px;margin:22px auto 18px;max-width:800px}
-  .grad{background:linear-gradient(90deg,var(--ungu),var(--pink),var(--biru));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p{color:var(--muted);font-size:18px;max-width:620px;margin:0 auto 34px}
-  .btn{display:inline-block;padding:14px 28px;border-radius:12px;font-weight:700;transition:transform .2s,box-shadow .2s}
-  .btn-utama{background:linear-gradient(90deg,#7c3aed,#c026d3);box-shadow:0 10px 30px rgba(168,85,247,.35)}
-  .btn-utama:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(168,85,247,.5)}
-  .btn-garis{border:1px solid var(--line);margin-left:10px}
-  .btn-garis:hover{background:var(--card)}
+  /* ===== Mockup produk (dibuat dengan CSS, tanpa file gambar) ===== */
+  .buku{position:relative;width:150px;aspect-ratio:3/4.2;border-radius:3px 10px 10px 3px;padding:16px 14px 14px 20px;
+    background:linear-gradient(150deg,var(--c1),var(--c2));display:flex;flex-direction:column;
+    box-shadow:0 30px 60px rgba(0,0,0,.6),inset -2px 0 0 rgba(255,255,255,.06),inset 8px 0 12px rgba(0,0,0,.35)}
+  .buku::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.12)}
+  .buku::after{content:"";position:absolute;inset:8px 8px 8px 14px;border:1px solid rgba(241,216,160,.35);border-radius:2px 6px 6px 2px;pointer-events:none}
+  .buku .lbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--emas2);opacity:.9}
+  .buku .jdl{font-family:'Playfair Display',serif;font-weight:800;font-size:20px;line-height:1.05;margin-top:auto;color:#fff}
+  .buku .gr{width:34px;height:2px;background:var(--emas);margin:9px 0 7px}
+  .buku .sub{font-size:8.5px;color:rgba(255,255,255,.7);line-height:1.35}
+  .buku .mrk{font-size:7.5px;letter-spacing:2px;color:var(--emas2);margin-top:12px;text-transform:uppercase}
+
+  .hp{position:relative;width:118px;aspect-ratio:9/18.5;border-radius:22px;border:5px solid #1b1b22;
+    background:linear-gradient(170deg,var(--c1),var(--c2));padding:22px 11px 12px;display:flex;flex-direction:column;gap:7px;
+    box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 0 1px rgba(241,216,160,.25)}
+  .hp::before{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:34px;height:6px;border-radius:9px;background:#1b1b22}
+  .hp .jdl{font-family:'Playfair Display',serif;font-weight:800;font-size:13px;color:#fff;line-height:1.1}
+  .hp .lbl{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:var(--emas2)}
+  .hp .blok{border-radius:8px;background:rgba(255,255,255,.1);padding:7px;display:flex;flex-direction:column;gap:4px}
+  .hp .bar{height:4px;border-radius:4px;background:rgba(255,255,255,.28)}
+  .hp .bar.e{background:var(--emas);width:55%}
+  .hp .ring{width:38px;height:38px;border-radius:50%;margin:2px auto;
+    background:conic-gradient(var(--emas) 0 70%,rgba(255,255,255,.15) 0);-webkit-mask:radial-gradient(circle,transparent 52%,#000 53%);mask:radial-gradient(circle,transparent 52%,#000 53%)}
+  .hp .tbl{margin-top:auto;height:20px;border-radius:7px;background:linear-gradient(90deg,var(--emas3),var(--emas2))}
+
+  /* Warna tiap produk */
+  .p-rumah{--c1:#0f3b39;--c2:#1c6a63}
+  .p-otak{--c1:#2c1838;--c2:#5d3470}
+  .p-flip{--c1:#3d0d18;--c2:#86213a}
+  .p-aturan{--c1:#0f2142;--c2:#2a5687}
+  .p-kartu{--c1:#4a2c08;--c2:#9a661c}
+  .p-umroh{--c1:#0a2619;--c2:#1b5537}
+
+  /* ===== Hero dengan kolase produk ===== */
+  .hero{position:relative;padding:110px 0 90px;text-align:center;overflow:hidden;min-height:660px}
+  .kolase{position:absolute;inset:0;pointer-events:none}
+  .kolase>*{position:absolute;opacity:.9;animation:melayang 9s ease-in-out infinite}
+  .kolase>*:nth-child(2n){animation-delay:-3s}
+  .kolase>*:nth-child(3n){animation-delay:-5s}
+  @keyframes melayang{0%,100%{translate:0 0}50%{translate:0 -14px}}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(520px 380px at 50% 48%,rgba(10,10,15,.94) 30%,rgba(10,10,15,.55) 70%,rgba(10,10,15,.25))}
+  .hero .isi{position:relative;z-index:2}
+  .pill{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    padding:7px 16px;border-radius:99px;border:1px solid rgba(212,175,55,.45);color:var(--emas2);background:rgba(212,175,55,.08)}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,64px);line-height:1.08;font-weight:800;margin:22px auto 18px;max-width:760px}
+  .hero p{color:var(--muted);font-size:18px;max-width:560px;margin:0 auto 34px}
+  .btn{display:inline-block;padding:14px 30px;border-radius:12px;font-weight:700;transition:transform .2s,box-shadow .2s,background .2s}
+  .btn-utama{color:#1a1406;background:linear-gradient(100deg,var(--emas3),var(--emas2) 50%,var(--emas));box-shadow:0 10px 30px rgba(212,175,55,.25)}
+  .btn-utama:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(212,175,55,.4)}
+  .btn-garis{border:1px solid rgba(212,175,55,.45);color:var(--emas2);margin-left:10px}
+  .btn-garis:hover{background:rgba(212,175,55,.08)}
   @media(max-width:480px){.btn-garis{margin:12px 0 0}}
 
-  /* Statistik */
-  .stat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:640px;margin:56px auto 0}
-  .stat div{padding:18px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
-  .stat b{display:block;font-size:24px}
+  .stat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:600px;margin:58px auto 0}
+  .stat div{padding:18px 10px;border-radius:16px;background:rgba(18,18,26,.8);border:1px solid var(--line);backdrop-filter:blur(6px)}
+  .stat b{display:block;font-family:'Playfair Display',serif;font-size:26px;color:var(--emas2)}
   .stat small{color:var(--muted);font-size:13px}
 
+  /* Posisi kolase — desktop */
+  .k1{left:3%;top:90px;rotate:-12deg}
+  .k2{left:15%;top:330px;rotate:8deg}
+  .k3{left:-1%;top:430px;rotate:-4deg;scale:.85}
+  .k4{right:3%;top:80px;rotate:11deg}
+  .k5{right:16%;top:320px;rotate:-9deg}
+  .k6{right:-1%;top:420px;rotate:6deg;scale:.85}
+  @media(max-width:900px){
+    .kolase>*{opacity:.45}
+    .k2,.k5{display:none}
+    .k1{left:-40px;top:70px}.k4{right:-40px;top:70px}
+    .k3{left:-50px;top:470px}.k6{right:-50px;top:470px}
+  }
+
   /* Bagian */
-  section{padding:70px 0}
-  .judul{text-align:center;margin-bottom:44px}
-  .judul h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-1px;margin-top:12px}
+  section{padding:80px 0}
+  .judul{text-align:center;margin-bottom:48px}
+  .judul h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:800;margin-top:14px}
   .judul p{color:var(--muted);margin-top:8px}
 
   /* Kartu produk */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
-  .kartu{position:relative;padding:28px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
-    border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .25s,border-color .25s}
-  .kartu:hover{transform:translateY(-4px);border-color:rgba(168,85,247,.5)}
-  .ikon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;margin-bottom:18px;
-    background:linear-gradient(135deg,rgba(124,58,237,.4),rgba(192,38,211,.3))}
-  .jenis{font-size:12px;color:#d8b4fe;font-weight:700;text-transform:uppercase;letter-spacing:.8px}
-  .kartu h3{font-size:21px;margin:6px 0 10px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  .kartu{border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+    border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
+  .kartu:hover{transform:translateY(-5px);border-color:rgba(212,175,55,.55);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .etalase{height:230px;display:grid;place-items:center;position:relative;
+    background:radial-gradient(260px 160px at 50% 70%,color-mix(in srgb,var(--c2) 55%,transparent),transparent 70%),
+               linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.25));border-bottom:1px solid var(--line)}
+  .etalase .buku{width:128px;rotate:-4deg}
+  .etalase .hp{width:100px;rotate:4deg}
+  .etalase .duo{display:flex;align-items:flex-end;gap:0}
+  .etalase .duo .hp{margin-left:-26px;rotate:6deg;width:92px}
+  .badan{padding:24px 26px 26px;display:flex;flex-direction:column;flex:1}
+  .jenis{font-size:11.5px;color:var(--emas2);font-weight:700;text-transform:uppercase;letter-spacing:1.4px}
+  .kartu h3{font-family:'Playfair Display',serif;font-size:24px;margin:6px 0 8px}
   .kartu p{color:var(--muted);font-size:15px;flex:1}
-  .kartu ul{list-style:none;margin:16px 0 22px;font-size:14px}
-  .kartu li{padding:4px 0 4px 24px;position:relative}
-  .kartu li::before{content:"✓";position:absolute;left:0;color:var(--hijau);font-weight:800}
-  .bawah{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .harga{font-weight:800;font-size:20px}
+  .kartu ul{list-style:none;margin:14px 0 22px;font-size:14px}
+  .kartu li{padding:3px 0 3px 22px;position:relative}
+  .kartu li::before{content:"◆";position:absolute;left:0;top:5px;font-size:9px;color:var(--emas)}
+  .bawah{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+  .harga{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:var(--emas2)}
   .kartu .btn{padding:10px 18px;font-size:14px}
 
-  /* Cara kerja */
-  .langkah{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;counter-reset:n}
-  .langkah div{padding:26px;border-radius:18px;background:var(--card);border:1px solid var(--line)}
-  .langkah div::before{counter-increment:n;content:counter(n);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;
-    background:linear-gradient(135deg,#7c3aed,#c026d3);font-weight:800;margin-bottom:14px}
+  /* Cara akses */
+  .langkah{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;counter-reset:n}
+  .langkah div{padding:28px;border-radius:18px;background:var(--card);border:1px solid var(--line)}
+  .langkah div::before{counter-increment:n;content:counter(n);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--emas);color:var(--emas2);font-family:'Playfair Display',serif;font-weight:800;font-size:18px;margin-bottom:16px}
   .langkah h4{font-size:17px;margin-bottom:6px}
   .langkah p{color:var(--muted);font-size:14px}
 
   /* FAQ */
+  .faq{max-width:740px;margin:0 auto}
   details{border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px;background:var(--card)}
-  summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between}
-  summary::after{content:"+";color:var(--pink);font-size:20px;line-height:1}
+  summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--emas);font-size:20px;line-height:1}
   details[open] summary::after{content:"–"}
   details p{color:var(--muted);margin-top:10px;font-size:15px}
-  .faq{max-width:720px;margin:0 auto}
 
   /* Kontak */
-  .cta{text-align:center;padding:56px 24px;border-radius:24px;border:1px solid rgba(168,85,247,.35);
-    background:radial-gradient(600px 200px at 50% 0%,rgba(168,85,247,.3),transparent),var(--bg2)}
-  .cta h2{font-size:clamp(24px,4vw,34px);font-weight:800;margin-bottom:10px}
-  .cta p{color:var(--muted);margin-bottom:26px}
+  .cta{text-align:center;padding:60px 24px;border-radius:26px;border:1px solid rgba(212,175,55,.4);
+    background:radial-gradient(600px 220px at 50% 0%,rgba(212,175,55,.16),transparent),var(--bg2)}
+  .cta h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,38px);font-weight:800;margin-bottom:10px}
+  .cta p{color:var(--muted);margin-bottom:28px}
 
   footer{padding:36px 0;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
 
-  /* Animasi muncul */
   .muncul{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
   .muncul.tampil{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.kolase>*{animation:none}}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <a href="#" class="logo">Azfar <span>Store</span></a>
+    <a href="#" class="logo">Azfar <span class="emas">Store</span></a>
     <div class="menu">
       <a href="#produk">Produk</a>
       <a href="#cara">Cara Akses</a>
@@ -116,17 +183,29 @@
   </div>
 </nav>
 
-<header class="hero wrap">
-  <span class="pill">Produk Digital • Akses Instan</span>
-  <h1>Atur rumah & keluarga jadi <span class="grad">lebih ringan</span></h1>
-  <p>Ebook, panduan SOP, dan mini app praktis yang bisa langsung dipakai dari HP. Sekali bayar, tanpa ribet.</p>
-  <a href="#produk" class="btn btn-utama">Lihat Produk</a>
-  <a href="#cara" class="btn btn-garis">Cara Akses</a>
+<header class="hero">
+  <!-- Kolase mockup produk di latar belakang -->
+  <div class="kolase" aria-hidden="true">
+    <div class="buku p-rumah k1"><span class="lbl">Ebook + SOP</span><span class="jdl">Rumah Autopilot</span><span class="gr"></span><span class="sub">Sistem rumah rapi tanpa diingatkan</span><span class="mrk">Azfar Store</span></div>
+    <div class="hp p-umroh k2"><span class="lbl">Web App</span><span class="jdl">Kompas Umroh</span><div class="blok"><div class="bar e"></div><div class="bar"></div><div class="bar"></div></div><div class="blok"><div class="bar"></div><div class="bar e"></div></div><div class="tbl"></div></div>
+    <div class="hp p-otak k3"><span class="lbl">Mini App</span><span class="jdl">Otak Rumah</span><div class="ring"></div><div class="blok"><div class="bar"></div><div class="bar e"></div></div><div class="tbl"></div></div>
+    <div class="buku p-aturan k4"><span class="lbl">Ebook Bergambar</span><span class="jdl">Aturan Main</span><span class="gr"></span><span class="sub">Berani berkata "tidak"</span><span class="mrk">Azfar Store</span></div>
+    <div class="hp p-flip k5"><span class="lbl">Program 90 Hari</span><span class="jdl">FLIP 90</span><div class="ring"></div><div class="blok"><div class="bar e"></div><div class="bar"></div></div><div class="tbl"></div></div>
+    <div class="hp p-kartu k6"><span class="lbl">Web App</span><span class="jdl">Kartu Latihan</span><div class="blok"><div class="bar e"></div><div class="bar"></div><div class="bar"></div></div><div class="blok"><div class="bar"></div></div><div class="tbl"></div></div>
+  </div>
 
-  <div class="stat">
-    <div><b>6+</b><small>Produk aktif</small></div>
-    <div><b>HP</b><small>Bisa dibuka di HP</small></div>
-    <div><b>1x</b><small>Sekali bayar</small></div>
+  <div class="wrap isi">
+    <span class="pill">Produk Digital • Akses Instan</span>
+    <h1>Atur rumah & keluarga jadi <span class="emas">lebih ringan</span></h1>
+    <p>Ebook, panduan SOP, dan mini app praktis yang bisa langsung dipakai dari HP. Sekali bayar, tanpa ribet.</p>
+    <a href="#produk" class="btn btn-utama">Lihat Produk</a>
+    <a href="#cara" class="btn btn-garis">Cara Akses</a>
+
+    <div class="stat">
+      <div><b>6+</b><small>Produk aktif</small></div>
+      <div><b>HP</b><small>Bisa dibuka di HP</small></div>
+      <div><b>1x</b><small>Sekali bayar</small></div>
+    </div>
   </div>
 </header>
 
@@ -134,64 +213,76 @@
   <div class="wrap">
     <div class="judul muncul">
       <span class="pill">Katalog</span>
-      <h2>Produk <span class="grad">Azfar Store</span></h2>
+      <h2>Koleksi <span class="emas">Azfar Store</span></h2>
       <p>Pilih yang paling kamu butuhkan sekarang.</p>
     </div>
 
     <div class="grid">
       <!-- GANTI href="#" DENGAN LINK CHECKOUT/LANDING PAGE MASING-MASING PRODUK -->
-      <div class="kartu muncul">
-        <div class="ikon">🏠</div>
-        <span class="jenis">Ebook + SOP + Dashboard</span>
-        <h3>Rumah Autopilot</h3>
-        <p>Sistem mengatur pekerjaan rumah supaya berjalan rapi tanpa harus diingatkan terus.</p>
-        <ul><li>Ebook panduan</li><li>SOP per ruangan</li><li>Template Excel & Notion</li></ul>
-        <div class="bawah"><span class="harga">Rp99.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+      <div class="kartu muncul p-rumah">
+        <div class="etalase"><div class="buku p-rumah"><span class="lbl">Ebook + SOP</span><span class="jdl">Rumah Autopilot</span><span class="gr"></span><span class="sub">Sistem rumah rapi tanpa diingatkan</span><span class="mrk">Azfar Store</span></div></div>
+        <div class="badan">
+          <span class="jenis">Ebook + SOP + Dashboard</span>
+          <h3>Rumah Autopilot</h3>
+          <p>Sistem mengatur pekerjaan rumah supaya berjalan rapi tanpa harus diingatkan terus.</p>
+          <ul><li>Ebook panduan</li><li>SOP per ruangan</li><li>Template Excel & Notion</li></ul>
+          <div class="bawah"><span class="harga">Rp99.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+        </div>
       </div>
 
-      <div class="kartu muncul">
-        <div class="ikon">🧠</div>
-        <span class="jenis">Mini App</span>
-        <h3>Otak Rumah</h3>
-        <p>Aplikasi kecil untuk mencatat dan mengingat urusan rumah tangga langsung dari HP.</p>
-        <ul><li>Buka di browser HP</li><li>Tanpa install</li><li>Data tersimpan di perangkatmu</li></ul>
-        <div class="bawah"><span class="harga">Rp39.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+      <div class="kartu muncul p-otak">
+        <div class="etalase"><div class="hp p-otak"><span class="lbl">Mini App</span><span class="jdl">Otak Rumah</span><div class="ring"></div><div class="blok"><div class="bar"></div><div class="bar e"></div></div><div class="tbl"></div></div></div>
+        <div class="badan">
+          <span class="jenis">Mini App</span>
+          <h3>Otak Rumah</h3>
+          <p>Aplikasi kecil untuk mencatat dan mengingat urusan rumah tangga langsung dari HP.</p>
+          <ul><li>Buka di browser HP</li><li>Tanpa install</li><li>Data tersimpan di perangkatmu</li></ul>
+          <div class="bawah"><span class="harga">Rp39.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+        </div>
       </div>
 
-      <div class="kartu muncul">
-        <div class="ikon">⚡</div>
-        <span class="jenis">Mini App</span>
-        <h3>FLIP 90</h3>
-        <p>Program 90 hari yang memandu perubahan kebiasaan langkah demi langkah.</p>
-        <ul><li>Panduan harian</li><li>Pantau progres</li><li>Akses dari HP</li></ul>
-        <div class="bawah"><span class="harga">Rp99.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+      <div class="kartu muncul p-flip">
+        <div class="etalase"><div class="hp p-flip"><span class="lbl">Program 90 Hari</span><span class="jdl">FLIP 90</span><div class="ring"></div><div class="blok"><div class="bar e"></div><div class="bar"></div></div><div class="tbl"></div></div></div>
+        <div class="badan">
+          <span class="jenis">Mini App</span>
+          <h3>FLIP 90</h3>
+          <p>Program 90 hari yang memandu perubahan kebiasaan langkah demi langkah.</p>
+          <ul><li>Panduan harian</li><li>Pantau progres</li><li>Akses dari HP</li></ul>
+          <div class="bawah"><span class="harga">Rp99.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+        </div>
       </div>
 
-      <div class="kartu muncul">
-        <div class="ikon">📘</div>
-        <span class="jenis">Ebook Bergambar</span>
-        <h3>Aturan Main</h3>
-        <p>Buku bergambar untuk anak 8–13 tahun tentang berani berkata "tidak" dan menjaga diri.</p>
-        <ul><li>Ebook bergambar</li><li>3 panduan orang tua</li><li>Bisa dicetak sendiri</li></ul>
-        <div class="bawah"><span class="harga">Rp99.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+      <div class="kartu muncul p-aturan">
+        <div class="etalase"><div class="buku p-aturan"><span class="lbl">Ebook Bergambar</span><span class="jdl">Aturan Main</span><span class="gr"></span><span class="sub">Berani berkata "tidak"</span><span class="mrk">Azfar Store</span></div></div>
+        <div class="badan">
+          <span class="jenis">Ebook Bergambar</span>
+          <h3>Aturan Main</h3>
+          <p>Buku bergambar untuk anak 8–13 tahun tentang berani berkata "tidak" dan menjaga diri.</p>
+          <ul><li>Ebook bergambar</li><li>3 panduan orang tua</li><li>Bisa dicetak sendiri</li></ul>
+          <div class="bawah"><span class="harga">Rp99.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+        </div>
       </div>
 
-      <div class="kartu muncul">
-        <div class="ikon">🃏</div>
-        <span class="jenis">Web App • Pendamping Aturan Main</span>
-        <h3>Kartu Latihan</h3>
-        <p>Kartu latihan interaktif untuk anak mempraktikkan isi buku Aturan Main bersama orang tua.</p>
-        <ul><li>Buka di browser HP</li><li>Tanpa install</li><li>Latihan bareng orang tua</li></ul>
-        <div class="bawah"><span class="harga">Rp39.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+      <div class="kartu muncul p-kartu">
+        <div class="etalase"><div class="hp p-kartu"><span class="lbl">Web App</span><span class="jdl">Kartu Latihan</span><div class="blok"><div class="bar e"></div><div class="bar"></div><div class="bar"></div></div><div class="blok"><div class="bar"></div></div><div class="tbl"></div></div></div>
+        <div class="badan">
+          <span class="jenis">Web App • Pendamping Aturan Main</span>
+          <h3>Kartu Latihan</h3>
+          <p>Kartu latihan interaktif untuk anak mempraktikkan isi buku Aturan Main bersama orang tua.</p>
+          <ul><li>Buka di browser HP</li><li>Tanpa install</li><li>Latihan bareng orang tua</li></ul>
+          <div class="bawah"><span class="harga">Rp39.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+        </div>
       </div>
 
-      <div class="kartu muncul">
-        <div class="ikon">🕋</div>
-        <span class="jenis">Web App</span>
-        <h3>Kompas Umroh</h3>
-        <p>Panduan umroh mandiri step by step, dari persiapan sampai selesai ibadah.</p>
-        <ul><li>5 modul, 15 materi</li><li>Rencana 9, 12 & 14 hari</li><li>Bonus ebook Serba-Serbi Umroh</li></ul>
-        <div class="bawah"><span class="harga">Rp99.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+      <div class="kartu muncul p-umroh">
+        <div class="etalase"><div class="hp p-umroh"><span class="lbl">Web App</span><span class="jdl">Kompas Umroh</span><div class="blok"><div class="bar e"></div><div class="bar"></div><div class="bar"></div></div><div class="blok"><div class="bar"></div><div class="bar e"></div></div><div class="tbl"></div></div></div>
+        <div class="badan">
+          <span class="jenis">Web App</span>
+          <h3>Kompas Umroh</h3>
+          <p>Panduan umroh mandiri step by step, dari persiapan sampai selesai ibadah.</p>
+          <ul><li>5 modul, 15 materi</li><li>Rencana 9, 12 & 14 hari</li><li>Bonus ebook Serba-Serbi Umroh</li></ul>
+          <div class="bawah"><span class="harga">Rp99.000</span><a href="#" class="btn btn-utama">Lihat Detail</a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -201,7 +292,7 @@
   <div class="wrap">
     <div class="judul muncul">
       <span class="pill">Cara Akses</span>
-      <h2>Cuma <span class="grad">3 langkah</span></h2>
+      <h2>Cuma <span class="emas">3 langkah</span></h2>
     </div>
     <div class="langkah">
       <div class="muncul"><h4>Pilih produk</h4><p>Klik "Lihat Detail" pada produk yang kamu butuhkan.</p></div>
@@ -215,7 +306,7 @@
   <div class="wrap">
     <div class="judul muncul">
       <span class="pill">FAQ</span>
-      <h2>Pertanyaan <span class="grad">umum</span></h2>
+      <h2>Pertanyaan <span class="emas">umum</span></h2>
     </div>
     <div class="faq">
       <details><summary>Produknya berbentuk apa?</summary><p>Ebook (PDF), template, dan mini app yang dibuka lewat browser HP atau laptop. Tidak ada barang fisik yang dikirim.</p></details>
@@ -229,9 +320,8 @@
 <section id="kontak">
   <div class="wrap">
     <div class="cta muncul">
-      <h2>Ada pertanyaan?</h2>
+      <h2>Ada <span class="emas">pertanyaan?</span></h2>
       <p>Tim kami siap membantu lewat WhatsApp.</p>
-      
       <a href="https://wa.me/6281369003728" class="btn btn-utama">Chat WhatsApp</a>
     </div>
   </div>
@@ -245,7 +335,7 @@
   document.getElementById('tahun').textContent = new Date().getFullYear();
   const obs = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('tampil'); obs.unobserve(e.target); }
-  }), { threshold: .15 });
+  }), { threshold: .12 });
   document.querySelectorAll('.muncul').forEach(el => obs.observe(el));
 </script>
 </body>
